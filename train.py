@@ -44,7 +44,7 @@ batch_size = 32
 train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255)
 
 # 匯入測試集圖片位址csv檔案轉為DataFrame
-df = pd.read_csv('train_image_paths_512.csv')
+df = pd.read_csv('train_image_paths.csv')
 
 # 訓練集
 train_generator = train_datagen.flow_from_dataframe(
@@ -58,7 +58,7 @@ train_generator = train_datagen.flow_from_dataframe(
 
 val_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255)
 
-df1 = pd.read_csv('val_image_paths_512.csv')
+df1 = pd.read_csv('val_image_paths.csv')
 
 val_generator = val_datagen.flow_from_dataframe(
     dataframe=df1,
@@ -70,13 +70,13 @@ val_generator = val_datagen.flow_from_dataframe(
 )
 
 history = classifier.fit(train_generator,
-                         epochs=200,
+                         epochs=600,
                          steps_per_epoch=int(10500 // batch_size),
                          validation_data=val_generator,
                          validation_steps=int(1000 / batch_size))
 
 # classifier.save('model/train_model_1.h5')
-classifier.save('model/1D_test/train_model_LSTM_epoch200')
+classifier.save('model/1D_test/train_model_LSTM_epoch600')
 
 # Plot training and validation loss over epochs
 plt.plot(history.history['loss'], label='training_loss')
@@ -85,7 +85,7 @@ plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.legend()
 # plt.savefig('result/training/non_LSTM/loss.png')
-plt.savefig('result/training/LSTM/1D_test/loss_epoch200.png')
+plt.savefig('result/training/LSTM/1D_test/loss_epoch600.png')
 plt.show()
 
 
@@ -96,6 +96,6 @@ plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.legend()
 # plt.savefig('result/training/non_LSTM/acc.png')
-plt.savefig('result/training/LSTM/1D_test/acc_epoch200.png')
+plt.savefig('result/training/LSTM/1D_test/acc_epoch600.png')
 plt.show()
 
