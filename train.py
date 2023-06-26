@@ -70,13 +70,13 @@ val_generator = val_datagen.flow_from_dataframe(
 )
 
 history = classifier.fit(train_generator,
-                         epochs=600,
+                         epochs=800,
                          steps_per_epoch=int(10500 // batch_size),
                          validation_data=val_generator,
                          validation_steps=int(1000 / batch_size))
 
 # classifier.save('model/train_model_1.h5')
-classifier.save('model/1D_test/train_model_LSTM_epoch600')
+classifier.save('model/1D_test/train_model_LSTM_epoch800')
 
 # Plot training and validation loss over epochs
 plt.plot(history.history['loss'], label='training_loss')
@@ -85,7 +85,7 @@ plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.legend()
 # plt.savefig('result/training/non_LSTM/loss.png')
-plt.savefig('result/training/LSTM/1D_test/loss_epoch600.png')
+plt.savefig('result/training/LSTM/1D_test/loss_epoch800.png')
 plt.show()
 
 
@@ -96,6 +96,6 @@ plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.legend()
 # plt.savefig('result/training/non_LSTM/acc.png')
-plt.savefig('result/training/LSTM/1D_test/acc_epoch600.png')
+plt.savefig('result/training/LSTM/1D_test/acc_epoch800.png')
 plt.show()
 
